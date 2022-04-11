@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "myfootprint")(type "KiCad")(uri "C:/Users/cxxy-phy-lab/Desktop/SimpleWaveGenerator/myfootprint.pretty")(options "")(descr ""))
+)
