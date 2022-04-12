@@ -4622,7 +4622,7 @@
   (symbol (lib_id "Device:LED") (at 216.535 50.165 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 6f149774-e0a5-4122-b56d-41cc05af017d)
-    (property "Reference" "D1" (id 0) (at 218.821 48.641 90)
+    (property "Reference" "power1" (id 0) (at 218.821 48.641 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "LED_RED" (id 1) (at 218.821 50.927 90)
@@ -4770,7 +4770,7 @@
   (symbol (lib_id "Device:LED") (at 95.25 256.54 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 86d790e1-59c6-42e6-b26b-4004694fc764)
-    (property "Reference" "D2" (id 0) (at 97.536 255.016 90)
+    (property "Reference" "amp1" (id 0) (at 97.536 255.016 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "LED_BLUE" (id 1) (at 97.536 257.302 90)
@@ -5706,7 +5706,7 @@
   (symbol (lib_id "Device:LED") (at 113.03 256.54 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid ce1d41f7-2ab2-4705-abf0-5d3d3e4716b4)
-    (property "Reference" "D3" (id 0) (at 115.316 255.016 90)
+    (property "Reference" "freq1" (id 0) (at 115.316 255.016 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "LED_BLUE" (id 1) (at 115.316 257.302 90)
@@ -6437,15 +6437,6 @@
     (path "/d5065198-7351-4b21-82eb-b2123d1c56bb"
       (reference "C38") (unit 1) (value "104") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
-    (path "/6f149774-e0a5-4122-b56d-41cc05af017d"
-      (reference "D1") (unit 1) (value "LED_RED") (footprint "LED_SMD:LED_0603_1608Metric")
-    )
-    (path "/86d790e1-59c6-42e6-b26b-4004694fc764"
-      (reference "D2") (unit 1) (value "LED_BLUE") (footprint "LED_SMD:LED_0603_1608Metric")
-    )
-    (path "/ce1d41f7-2ab2-4705-abf0-5d3d3e4716b4"
-      (reference "D3") (unit 1) (value "LED_BLUE") (footprint "LED_SMD:LED_0603_1608Metric")
-    )
     (path "/e5926be9-c577-46f6-96cf-d0cd09f7c361"
       (reference "F1") (unit 1) (value "Fuse") (footprint "Fuse:Fuse_1206_3216Metric")
     )
@@ -6622,6 +6613,15 @@
     )
     (path "/97884f5d-3789-4b61-9149-6713768197df"
       (reference "X1") (unit 1) (value "16Mhz_Passive_3225") (footprint "Oscillator:Oscillator_SMD_EuroQuartz_XO32-4Pin_3.2x2.5mm")
+    )
+    (path "/86d790e1-59c6-42e6-b26b-4004694fc764"
+      (reference "amp1") (unit 1) (value "LED_BLUE") (footprint "LED_SMD:LED_0603_1608Metric")
+    )
+    (path "/ce1d41f7-2ab2-4705-abf0-5d3d3e4716b4"
+      (reference "freq1") (unit 1) (value "LED_BLUE") (footprint "LED_SMD:LED_0603_1608Metric")
+    )
+    (path "/6f149774-e0a5-4122-b56d-41cc05af017d"
+      (reference "power1") (unit 1) (value "LED_RED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
   )
 )
