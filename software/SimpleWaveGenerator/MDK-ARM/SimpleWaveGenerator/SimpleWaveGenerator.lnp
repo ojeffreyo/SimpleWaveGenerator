@@ -1,0 +1,28 @@
+--cpu Cortex-M3
+"simplewavegenerator\startup_stm32f103xe.o"
+"simplewavegenerator\main.o"
+"simplewavegenerator\stm32f1xx_it.o"
+"simplewavegenerator\stm32f1xx_hal_msp.o"
+"simplewavegenerator\stm32f1xx_hal_gpio_ex.o"
+"simplewavegenerator\stm32f1xx_hal_adc.o"
+"simplewavegenerator\stm32f1xx_hal_adc_ex.o"
+"simplewavegenerator\stm32f1xx_hal.o"
+"simplewavegenerator\stm32f1xx_hal_rcc.o"
+"simplewavegenerator\stm32f1xx_hal_rcc_ex.o"
+"simplewavegenerator\stm32f1xx_hal_gpio.o"
+"simplewavegenerator\stm32f1xx_hal_dma.o"
+"simplewavegenerator\stm32f1xx_hal_cortex.o"
+"simplewavegenerator\stm32f1xx_hal_pwr.o"
+"simplewavegenerator\stm32f1xx_hal_flash.o"
+"simplewavegenerator\stm32f1xx_hal_flash_ex.o"
+"simplewavegenerator\stm32f1xx_hal_exti.o"
+"simplewavegenerator\stm32f1xx_hal_dac.o"
+"simplewavegenerator\stm32f1xx_hal_dac_ex.o"
+"simplewavegenerator\stm32f1xx_hal_tim.o"
+"simplewavegenerator\stm32f1xx_hal_tim_ex.o"
+"simplewavegenerator\stm32f1xx_hal_uart.o"
+"simplewavegenerator\system_stm32f1xx.o"
+--strict --scatter "SimpleWaveGenerator\SimpleWaveGenerator.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SimpleWaveGenerator.map" -o SimpleWaveGenerator\SimpleWaveGenerator.axf
