@@ -60,7 +60,33 @@ float sin_value[]={0.017,0.035,0.052,0.070,0.087,0.105,0.122,0.139,0.156,0.174,0
 	                 0.485,0.470,0.454,0.439,0.423,0.407,0.391,0.375,0.359,0.343,0.326,0.310,0.293,0.276,0.259,
 	                 0.242,0.225,0.208,0.191,0.174,0.157,0.140,0.122,0.105,0.088,0.070,0.053,0.035,0.018,0.000};
 
-unsigned int delay_count = 0;
+//unsigned short delay_count = 9;//1020Hz
+//unsigned short delay_count = 50;//444Hz
+//unsigned short delay_count = 100;//263Hz
+//unsigned short delay_count = 150;//187Hz
+//unsigned short delay_count = 200;//145Hz
+//unsigned short delay_count = 250;//118Hz
+									 
+unsigned short delay_count = 785;									 
+unsigned short lowest_40Hz = 785;
+unsigned short highest_1000Hz = 9;
+
+/*delay count*/									 
+unsigned short freqlimit_1k_400[2] = {106,300};
+unsigned short freqlimit_400_200[2]= {219,460};
+unsigned short freqlimit_200_40[2] = {139,785};
+
+/*sin wave table length*/
+unsigned short table_length = 180;
+
+/*look up for the table step up*/
+unsigned short step_up[3] = {1,3,4};
+
+/*amplitude*/
+unsigned short amp = 2000;
+
+/*offset*/
+unsigned short offset = 2040;
 
 /* USER CODE END PV */
 
@@ -76,7 +102,26 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void output_sin_wave(unsigned short table_length, unsigned short step_gap, unsigned short delay_time, unsigned short amp, unsigned short offset)
+{
+		unsigned int output_value = 0;
+		unsigned int count = 0;
+	  unsigned short steps = 0;
+	
+		for(steps=0;steps<table_length;steps=steps+step_gap)
+		{
+			output_value = sin_value[steps]*amp+offset;
+			for(count=0; count<delay_time; count++);
+			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
+		}
+		
+		for(steps=0;steps<table_length;steps=steps+step_gap)
+		{
+			output_value = -sin_value[steps]*amp+offset;
+			for(count=0; count<delay_time; count++);
+			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
+		}
+}
 /* USER CODE END 0 */
 
 /**
@@ -86,9 +131,8 @@ static void MX_USART2_UART_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	unsigned steps = 0;
-	unsigned delay_steps = 0;
-	unsigned int output_value = 0;
+	unsigned short count = 0;
+	unsigned short temp = 0;
 
 
   /* USER CODE END 1 */
@@ -127,39 +171,32 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		
     /* USER CODE BEGIN 3 */
-//		for(steps=0; steps<resolution; steps=steps+1)
-//		{
-//			if(steps<=(resolution/2))
-//			{
-//				output_value = (sin(2*pi/resolution*steps))*2000+2048;
-//			}
-//			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
-//		}
-//		
-//		for(steps=0; steps<resolution; steps=steps+1)
-//		{
-//			if(steps<=(resolution/2))
-//			{
-//				output_value = 2048-(sin(2*pi/resolution*steps))*2000;
-//			}
-//			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
-//		}
-		for(steps=0;steps<180;steps=steps+1)
+		
+		if((count<=646) && (count>=0))
 		{
-			output_value = sin_value[steps]*2000+2040;
-			for(delay_steps=0;delay_steps<delay_count;delay_steps++);
-			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
+			output_sin_wave(180, 1, 785-count, 2000, 2040);
+			count = count + 1;
+		}
+		else if(count>646 && count<=887)
+		{
+			temp = count - 646;
+			output_sin_wave(180, 3, 460-temp, 2000, 2040);
+			count = count + 1;
+		}
+		else if(count>887 && count<=1081)
+		{
+			temp = count - 887;
+			output_sin_wave(180, 4, 300-temp, 2000, 2040);
+			count = count + 1;
+		}
+		else if(count > 1081)
+		{
+			count = 0;
 		}
 		
-		for(steps=0;steps<180;steps=steps+1)
-		{
-			output_value = -sin_value[steps]*2000+2040;
-			for(delay_steps=0;delay_steps<delay_count;delay_steps++);
-			HAL_DAC_SetValue(&hdac,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,output_value);
-		}
-		
+			
   }
   /* USER CODE END 3 */
 }
@@ -183,7 +220,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
