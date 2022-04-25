@@ -174,27 +174,37 @@ int main(void)
 		
     /* USER CODE BEGIN 3 */
 		
-		if((count<=646) && (count>=0))
+//		if((count<=646) && (count>=0))
+//		{
+//			output_sin_wave(180, 1, 785-count, 2000, 2040);
+//			count = count + 1;
+//		}
+//		else if(count>646 && count<=887)
+//		{
+//			temp = count - 646;
+//			output_sin_wave(180, 3, 460-temp, 2000, 2040);
+//			count = count + 1;
+//		}
+//		else if(count>887 && count<=1081)
+//		{
+//			temp = count - 887;
+//			output_sin_wave(180, 4, 300-temp, 2000, 2040);
+//			count = count + 1;
+//		}
+//		else if(count > 1081)
+//		{
+//			count = 0;
+//		}
+
+		if(count<=2000)
 		{
-			output_sin_wave(180, 1, 785-count, 2000, 2040);
-			count = count + 1;
+			output_sin_wave(180, 1, 139, count, 2040);
 		}
-		else if(count>646 && count<=887)
+		else if(count > 2000)
 		{
-			temp = count - 646;
-			output_sin_wave(180, 3, 460-temp, 2000, 2040);
-			count = count + 1;
+		 count = 0;
 		}
-		else if(count>887 && count<=1081)
-		{
-			temp = count - 887;
-			output_sin_wave(180, 4, 300-temp, 2000, 2040);
-			count = count + 1;
-		}
-		else if(count > 1081)
-		{
-			count = 0;
-		}
+		count = count + 1;
 		
 			
   }
