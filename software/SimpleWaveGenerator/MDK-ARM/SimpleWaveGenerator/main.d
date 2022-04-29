@@ -29,5 +29,6 @@ simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_da
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-simplewavegenerator\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

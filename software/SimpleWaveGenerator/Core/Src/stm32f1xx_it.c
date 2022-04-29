@@ -41,6 +41,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+extern unsigned short ADC_Value1;
+extern ADC_HandleTypeDef hadc1;
+
+extern unsigned short ADC_Value2;
+extern ADC_HandleTypeDef hadc2;
 
 /* USER CODE END PV */
 
@@ -55,7 +60,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim1;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -198,7 +203,29 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
 
+/**
+  * @brief This function handles TIM1 update interrupt.
+  */
+void TIM1_UP_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_UP_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim1);
+  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
+	
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,50);
+	ADC_Value1 = HAL_ADC_GetValue(&hadc1);
+	
+	HAL_ADC_Start(&hadc2);
+	HAL_ADC_PollForConversion(&hadc2,50);
+	ADC_Value2 = HAL_ADC_GetValue(&hadc2);
+
+
+  /* USER CODE END TIM1_UP_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
-
