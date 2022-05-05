@@ -96,6 +96,8 @@ unsigned short frequency_step = 0;
 	
 /*important variable*/
 unsigned short temp = 0;
+float ADC_Value1_temp = 0;
+float ADC_Value2_temp = 0;
 unsigned short test_count = 0;
 
 unsigned short ADC_Value1 = 0;
@@ -150,7 +152,7 @@ int main(void)
 	
 	amplitude = 2000;
 	frequency = 219;
-	frequency_step = 4;
+	frequency_step = 6;
 
 
   /* USER CODE END 1 */
@@ -220,11 +222,11 @@ int main(void)
 //			count = 0;
 //		}
 
-		if(temp <= 2000)
-		{
+//		if(temp <= 2000)
+//		{
 			/* ADC_Value1--->Frequency  ADC_Value2--->Amplitude */
-			output_sin_wave(table_length, frequency_step, ADC_Value1-300, ADC_Value2, offset);
-		}
+			output_sin_wave(table_length, frequency_step, ADC_Value1, ADC_Value2, offset);
+//		}
 
 
 //		else if(temp > 2000)

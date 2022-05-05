@@ -42,10 +42,17 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 extern unsigned short ADC_Value1;
+unsigned short smooth1[2] = {0,0};
 extern ADC_HandleTypeDef hadc1;
 
 extern unsigned short ADC_Value2;
+unsigned short smooth2[2] = {0,0};
 extern ADC_HandleTypeDef hadc2;
+
+extern float ADC_Value1_temp;
+extern float ADC_Value2_temp;
+
+extern unsigned short frequency_step;
 
 /* USER CODE END PV */
 
@@ -214,13 +221,64 @@ void TIM1_UP_IRQHandler(void)
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_IRQn 1 */
 	
+	/* ------Calculate the ADC_Value1------ */
+	float temp = 0;
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,50);
-	ADC_Value1 = HAL_ADC_GetValue(&hadc1);
+	smooth1[0] = HAL_ADC_GetValue(&hadc1);
 	
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,50);
+	smooth1[1] = HAL_ADC_GetValue(&hadc1);
+	
+	ADC_Value1 = (smooth1[0] + smooth2[1])/2;
+	
+	if(ADC_Value1>360 && ADC_Value1<=700)
+	{
+		ADC_Value1 = ADC_Value1 - 360;
+		ADC_Value1 = ADC_Value1 * 5.9;
+		ADC_Value1 = 2350 - ADC_Value1;
+		frequency_step = 3;
+	}
+	else if( ADC_Value1>700 && ADC_Value1<=1100)
+	{
+			ADC_Value1 = ADC_Value1 - 700;
+			ADC_Value1 = ADC_Value1 / 1.5;
+		  ADC_Value1 = 510 - ADC_Value1;
+		frequency_step = 4;
+	}
+	else if(ADC_Value1>1100 && ADC_Value1 <1120)
+	{
+		ADC_Value1 = 350;
+		frequency_step = 6;
+	}
+	else if( ADC_Value1>=1110)
+	{
+//		ADC_Value1 = ADC_Value1;
+		ADC_Value1 = ADC_Value1-1110;
+		ADC_Value1 = ADC_Value1/4;
+		ADC_Value1 = 345-ADC_Value1;
+		frequency_step = 6;
+	}
+	
+//	ADC_Value1 = ADC_Value1 - 742;
+//	ADC_Value1 = 3000 - ADC_Value1;
+	
+	/*--------------------------------------*/
+
+	/* ------Calculate the ADC_Value2------ */
 	HAL_ADC_Start(&hadc2);
 	HAL_ADC_PollForConversion(&hadc2,50);
 	ADC_Value2 = HAL_ADC_GetValue(&hadc2);
+	
+	/*limit the range*/
+	ADC_Value2 = ADC_Value2 - 729;
+	temp = (float)ADC_Value2;
+	temp = temp/1.4665;
+	ADC_Value2 = (unsigned short)temp;
+//	temp = (float)ADC_Value2/1270;
+//	ADC_Value2 = temp * 2000;
+	/*--------------------------------------*/
 
 
   /* USER CODE END TIM1_UP_IRQn 1 */
