@@ -232,34 +232,173 @@ void TIM1_UP_IRQHandler(void)
 	smooth1[1] = HAL_ADC_GetValue(&hadc1);
 	
 	ADC_Value1 = (smooth1[0] + smooth2[1])/2;
-	
-	if(ADC_Value1>360 && ADC_Value1<=700)
+	if( ADC_Value1<360)//40
 	{
-		ADC_Value1 = ADC_Value1 - 360;
-		ADC_Value1 = ADC_Value1 * 5.9;
-		ADC_Value1 = 2350 - ADC_Value1;
+		ADC_Value1 = 2350;
 		frequency_step = 3;
 	}
-	else if( ADC_Value1>700 && ADC_Value1<=1100)
+	else if(ADC_Value1 >= 360&& ADC_Value1 <=370)//43
 	{
-			ADC_Value1 = ADC_Value1 - 700;
-			ADC_Value1 = ADC_Value1 / 1.5;
-		  ADC_Value1 = 510 - ADC_Value1;
-		frequency_step = 4;
+		ADC_Value1 = 2200;
+		frequency_step = 3;
 	}
-	else if(ADC_Value1>1100 && ADC_Value1 <1120)
+	else if(ADC_Value1 > 370&& ADC_Value1 <=380)//46
 	{
-		ADC_Value1 = 350;
-		frequency_step = 6;
+		ADC_Value1 = 2050;
+		frequency_step = 3;
 	}
-	else if( ADC_Value1>=1110)
+	else if(ADC_Value1 > 380&& ADC_Value1 <=390)//49
 	{
+		ADC_Value1 = 1920;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 390&& ADC_Value1 <=400)//52
+	{
+		ADC_Value1 = 1780;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 400&& ADC_Value1 <=410)//55
+	{
+		ADC_Value1 = 1680;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 410&& ADC_Value1 <=420)//58
+	{
+		ADC_Value1 = 1580;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 410&& ADC_Value1 <=420)//61
+	{
+		ADC_Value1 = 1540;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 420&& ADC_Value1 <=430)//64
+	{
+		ADC_Value1 = 1490;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 430&& ADC_Value1 <=440)//67
+	{
+		ADC_Value1 = 1410;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 440&& ADC_Value1 <=450)//70
+	{
+		ADC_Value1 = 1340;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 450&& ADC_Value1 <=460)//73
+	{
+		ADC_Value1 = 1295;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 460&& ADC_Value1 <=470)//76
+	{
+		ADC_Value1 = 1240;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 470&& ADC_Value1 <=480)//79
+	{
+		ADC_Value1 = 1195;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 480&& ADC_Value1 <=488)//82
+	{
+		ADC_Value1 = 1150;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 488&& ADC_Value1 <=498)//85
+	{
+		ADC_Value1 = 1105;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 498&& ADC_Value1 <=508)//88
+	{
+		ADC_Value1 = 1070;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 508&& ADC_Value1 <=517)//91
+	{
+		ADC_Value1 = 1030;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 517&& ADC_Value1 <=527)//94
+	{
+		ADC_Value1 = 1000;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 527&& ADC_Value1 <=545)//97
+	{
+		ADC_Value1 = 960;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 545&& ADC_Value1 <=1105)//100-270
+	{
+		// ADC_Value1 = 165;
+		// ADC_Value1 = 329;
+		// ADC_Value1 = 930;
+		ADC_Value1 = 1525 - ADC_Value1*1.09;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 1105)//270-500
+	{
+		// ADC_Value1 = 165;
+		// ADC_Value1 = 329;
+		// ADC_Value1 = 930;
+		ADC_Value1 = 570 - ADC_Value1*0.221;
+		frequency_step = 3;
+	}
+	else if(ADC_Value1 > 1835)//270-500
+	{
+		ADC_Value1 = 165;
+		// ADC_Value1 = 329;
+		// ADC_Value1 = 930;
+//		ADC_Value1 = 569 - ADC_Value1*0.221;
+//		frequency_step = 3;
+	}
+
+//	else if(ADC_Value1 > 555&& ADC_Value1 <=557)//103
+//	{
+//		ADC_Value1 = 900;
+//		frequency_step = 3;
+//	}
+//	else if(ADC_Value1 > 550 && ADC_Value1 <= 1860)//xxx
+//	{
 //		ADC_Value1 = ADC_Value1;
-		ADC_Value1 = ADC_Value1-1110;
-		ADC_Value1 = ADC_Value1/4;
-		ADC_Value1 = 345-ADC_Value1;
-		frequency_step = 6;
-	}
+//		frequency_step = 3;
+//	}
+	
+//	if (ADC_Value1<=360)
+//	{
+//		ADC_Value1 = 2350;
+//	}
+//	else if(ADC_Value1>360 && ADC_Value1<=700)
+//	{
+//		ADC_Value1 = ADC_Value1 - 360;
+//		ADC_Value1 = ADC_Value1 * 5.9;
+//		ADC_Value1 = 2350 - ADC_Value1;
+//		frequency_step = 3;
+//	}
+//	else if( ADC_Value1>700 && ADC_Value1<=1100)
+//	{
+//			ADC_Value1 = ADC_Value1 - 700;
+//			ADC_Value1 = ADC_Value1 / 1.5;
+//		  ADC_Value1 = 510 - ADC_Value1;
+//			frequency_step = 4;
+//	}
+//	else if(ADC_Value1>1100 && ADC_Value1 <1120)
+//	{
+//		ADC_Value1 = 350;
+//		frequency_step = 6;
+//	}
+//	else if( ADC_Value1>=1120)
+//	{
+////		ADC_Value1 = ADC_Value1;
+//		ADC_Value1 = ADC_Value1-1110;
+//		ADC_Value1 = ADC_Value1/4;
+//		ADC_Value1 = 345-ADC_Value1;
+//		frequency_step = 6;
+//	}
 	
 //	ADC_Value1 = ADC_Value1 - 742;
 //	ADC_Value1 = 3000 - ADC_Value1;
