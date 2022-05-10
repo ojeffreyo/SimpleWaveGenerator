@@ -411,12 +411,20 @@ void TIM1_UP_IRQHandler(void)
 	ADC_Value2 = HAL_ADC_GetValue(&hadc2);
 	
 	/*limit the range*/
+//	ADC_Value2 = ADC_Value2;
+	if(ADC_Value2 <= 729)
+	{
+	  ADC_Value2 = 729;
+	}
+	
 	ADC_Value2 = ADC_Value2 - 729;
+
 	temp = (float)ADC_Value2;
 	temp = temp/1.4665;
 	ADC_Value2 = (unsigned short)temp;
-//	temp = (float)ADC_Value2/1270;
-//	ADC_Value2 = temp * 2000;
+	temp = (float)ADC_Value2/2931;
+	ADC_Value2 = temp * 2600;
+
 	/*--------------------------------------*/
 
 
