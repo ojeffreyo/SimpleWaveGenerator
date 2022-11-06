@@ -7,14 +7,14 @@ simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_de
 simplewavegenerator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Include/core_cm3.h
-simplewavegenerator\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+simplewavegenerator\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Include/cmsis_version.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 simplewavegenerator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-simplewavegenerator\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+simplewavegenerator\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 simplewavegenerator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
